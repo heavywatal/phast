@@ -1,11 +1,11 @@
 include make-include.mk
 
-SUB = lib dless exoniphy phastCons phastOdds phastMotif phyloFit phyloBoot phyloP prequel util 
+SUB = dless exoniphy phastCons phastOdds phastMotif phyloFit phyloBoot phyloP prequel util 
 
 CDIR = ${PWD}
 
-all: 
-	mkdir -p ../bin ../lib
+all: ${TARGETLIB}
+	mkdir -p ../bin
 	for dir in $(SUB) ; do cd ${CDIR}/$$dir && ${MAKE} ; done	
 ifeq ($(TARGETOS), Windows)
 	@for file in `ls ../bin` ; do mv ../bin/$$file ../bin/$$file.exe ; done
@@ -15,6 +15,10 @@ else
 	@for file in `ls ../bin` ; do perl help2man.pl ../bin/$$file ../doc/man/ ; done
 	@echo "Done."
 endif
+
+${TARGETLIB}:
+	mkdir -p ../lib
+	cd ${CDIR}/lib && ${MAKE}
 
 sharedlib:
 	cd ${CDIR}/lib && ${MAKE} sharedlib 
@@ -37,7 +41,7 @@ doc:
 	cd ../; make doc 
 
 clean:
-	@for dir in $(SUB) ; do cd ${CDIR}/$$dir && ${MAKE} clean ; done
+	@for dir in lib $(SUB) ; do cd ${CDIR}/$$dir && ${MAKE} clean ; done
 	rm -rf ../bin ../lib ../doc
 
 manpages:
