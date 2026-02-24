@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(phast
-  VERSION 1.9.5
+  VERSION 1.9.7
   LANGUAGES C)
 
 # Use C99 
