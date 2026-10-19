@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.18)
 
 project(phast
-  VERSION 1.9.5
+  VERSION 1.9.9
   LANGUAGES C)
 
-# Use C99 
+# Use C99
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
